@@ -131,8 +131,8 @@ footer, #MainMenu { visibility: hidden; }
 </style>
 
 <div class="hero">
-    <h1>MACHINE LEARNING HUB</h1>
-    <p>ศูนย์รวมเว็บแอปพลิเคชัน แนะนำสถานที่ท่องเที่ยว</p>
+    <h1>แนะนำสถานที่ท่องเที่ยว</h1>
+    <p>ศูนย์รวมเว็บแอปพลิเคชัน สถานที่ท่องเที่ยว</p>
 </div>
 """, unsafe_allow_html=True)
 
