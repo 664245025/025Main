@@ -132,16 +132,16 @@ footer, #MainMenu { visibility: hidden; }
 
 <div class="hero">
     <h1>MACHINE LEARNING HUB</h1>
-    <p>ศูนย์รวมเว็บแอปพลิเคชัน Machine Learning</p>
+    <p>ศูนย์รวมเว็บแอปพลิเคชัน แนะนำสถานที่ท่องเที่ยว</p>
 </div>
 """, unsafe_allow_html=True)
 
 st.write("")
 
 APPS = [
-    ("📌","งานที่ 1", "ระบบประเมินความเสี่ยงโรคหัวใจด้วย AI", "https://colab.research.google.com/drive/1ZmBJEQh-4eOANw2rbN9O-rx08Qo6DiSQ?usp=sharing"),
-    ("📌","งานที่ 2", "ระบบทำนายความเสี่ยงการผิดนัดชำระหนี้", "https://colab.research.google.com/drive/12YK3jnjWNXlemkG97EKQmmonLxFx8Cmi?usp=sharing"),
-    ("📌","งานที่ 3", "ระบบวิเคราะห์และจัดกลุ่มลูกค้าอัจฉริยะ", "https://mzvpqrmpmmrw4htsbjr7tt.streamlit.app/"),
+    ("📌","โครงสร้างข้อมูลทีท่องเที่ยว", "นำสถานที่ท่องเที่ยว", "https://colab.research.google.com/drive/1ZmBJEQh-4eOANw2rbN9O-rx08Qo6DiSQ?usp=sharing"),
+    ("📌","วิเคราะข้อมูลท่องเที่ยว", "วิเคราะข้อมูลและความสัมพันธ์ของสถานที่ท่องเที่ยว", "https://colab.research.google.com/drive/12YK3jnjWNXlemkG97EKQmmonLxFx8Cmi?usp=sharing"),
+    ("📌","ระบบแนะนำสถานที่ท่องเที่ยว", "แนะนำสถานที่ท่องเที่ยวจากข้อมูล", "https://mzvpqrmpmmrw4htsbjr7tt.streamlit.app/"),
     
 ]
 
