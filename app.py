@@ -1,4 +1,9 @@
 import streamlit as st
+from textwrap import dedent
+
+# =========================================================
+# PAGE CONFIG
+# =========================================================
 
 st.set_page_config(
     page_title="ML Hub",
@@ -7,26 +12,48 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-st.markdown("""
+
+# =========================================================
+# CSS
+# =========================================================
+
+st.markdown(dedent("""
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap');
 
 /* =========================
-   GLOBAL
+   MAIN BACKGROUND
 ========================= */
 
 .stApp {
     background:
-        radial-gradient(circle at 10% 10%, rgba(0, 229, 255, 0.12), transparent 35%),
-        radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.14), transparent 40%),
-        linear-gradient(135deg, #050816 0%, #0a1025 50%, #080b18 100%);
-    
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0, 229, 255, 0.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(124, 58, 237, 0.13),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #050816 0%,
+            #0a1025 50%,
+            #080b18 100%
+        );
+
     min-height: 100vh;
 }
 
-html, body, [class*="css"] {
+html,
+body,
+[class*="css"] {
     font-family: 'Prompt', sans-serif;
 }
+
 
 /* =========================
    HERO
@@ -34,48 +61,71 @@ html, body, [class*="css"] {
 
 .hero {
     text-align: center;
-    padding: 45px 10px 25px 10px;
+    padding: 45px 10px 30px 10px;
 }
 
-.hero .badge {
+.badge {
     display: inline-block;
-    padding: 6px 16px;
-    border: 1px solid rgba(0, 229, 255, 0.35);
+
+    padding: 7px 18px;
+
+    border: 1px solid rgba(34, 211, 238, 0.35);
+
     border-radius: 50px;
+
     color: #67e8f9;
-    background: rgba(0, 229, 255, 0.06);
-    font-size: 0.8rem;
+
+    background: rgba(34, 211, 238, 0.06);
+
+    font-size: 0.78rem;
+
     letter-spacing: 2px;
+
     margin-bottom: 18px;
 }
 
 .hero h1 {
     font-family: 'Orbitron', sans-serif;
+
     font-size: 3.2rem;
+
     font-weight: 700;
+
     letter-spacing: 2px;
-    background: linear-gradient(
-        90deg,
-        #22d3ee,
-        #60a5fa,
-        #a78bfa,
-        #22d3ee
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #22d3ee,
+            #60a5fa,
+            #a78bfa,
+            #22d3ee
+        );
+
     background-size: 300%;
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
     animation: gradientMove 6s ease infinite;
+
     margin: 0;
 }
 
 .hero p {
     color: #94a3b8;
+
     font-size: 1rem;
-    letter-spacing: 1px;
-    margin-top: 12px;
+
+    letter-spacing: 0.5px;
+
+    margin-top: 14px;
+
+    line-height: 1.8;
 }
 
 @keyframes gradientMove {
+
     0% {
         background-position: 0% 50%;
     }
@@ -87,32 +137,38 @@ html, body, [class*="css"] {
     100% {
         background-position: 0% 50%;
     }
+
 }
+
 
 /* =========================
    CARDS
 ========================= */
 
 .card {
-    background: linear-gradient(
-        145deg,
-        rgba(15, 23, 42, 0.95),
-        rgba(10, 18, 38, 0.92)
-    );
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.96),
+            rgba(10, 18, 38, 0.95)
+        );
 
-    border: 1px solid rgba(71, 85, 105, 0.5);
+    border: 1px solid rgba(71, 85, 105, 0.55);
 
     border-radius: 20px;
 
-    padding: 24px;
+    padding: 25px;
 
-    height: 270px;
+    height: 310px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: space-between;
 
     position: relative;
+
     overflow: hidden;
 
     transition: all 0.35s ease;
@@ -121,7 +177,8 @@ html, body, [class*="css"] {
         0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* เส้นแสงด้านบน */
+
+/* เส้นด้านบน */
 
 .card::before {
     content: "";
@@ -132,17 +189,17 @@ html, body, [class*="css"] {
     left: 0;
 
     width: 100%;
-    height: 2px;
+    height: 3px;
 
-    background: linear-gradient(
-        90deg,
-        #22d3ee,
-        #3b82f6,
-        #8b5cf6
-    );
-
-    opacity: 0.8;
+    background:
+        linear-gradient(
+            90deg,
+            #22d3ee,
+            #3b82f6,
+            #8b5cf6
+        );
 }
+
 
 /* Glow */
 
@@ -151,101 +208,128 @@ html, body, [class*="css"] {
 
     position: absolute;
 
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
 
-    right: -70px;
-    bottom: -70px;
+    right: -90px;
+    bottom: -90px;
 
     background: rgba(34, 211, 238, 0.08);
 
     border-radius: 50%;
 
-    filter: blur(30px);
+    filter: blur(35px);
+
+    pointer-events: none;
 }
 
+
+/* Hover */
+
 .card:hover {
+
     transform: translateY(-8px);
 
     border-color: rgba(34, 211, 238, 0.7);
 
     box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 18px 45px rgba(0, 0, 0, 0.45),
         0 0 25px rgba(34, 211, 238, 0.12);
 }
 
+
 /* =========================
-   CARD CONTENT
+   CARD ICON
 ========================= */
 
-.card .icon {
-    width: 52px;
-    height: 52px;
+.icon {
+
+    width: 58px;
+    height: 58px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border-radius: 14px;
+    border-radius: 16px;
 
-    background: linear-gradient(
-        135deg,
-        rgba(34, 211, 238, 0.15),
-        rgba(124, 58, 237, 0.15)
-    );
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 211, 238, 0.15),
+            rgba(124, 58, 237, 0.18)
+        );
 
     border: 1px solid rgba(34, 211, 238, 0.25);
 
-    font-size: 1.7rem;
+    font-size: 1.8rem;
 
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
+
+/* =========================
+   CARD TITLE
+========================= */
+
 .card h3 {
+
     color: #f1f5f9;
 
-    margin: 5px 0 8px 0;
+    margin: 0 0 10px 0;
 
-    font-size: 1.15rem;
+    font-size: 1.18rem;
 
     font-weight: 600;
 }
 
+
+/* =========================
+   CARD DESCRIPTION
+========================= */
+
 .card p {
+
     color: #94a3b8;
 
     font-size: 0.88rem;
 
-    line-height: 1.6;
+    line-height: 1.7;
 
-    margin-bottom: 10px;
+    margin: 0;
 }
+
 
 /* =========================
    BUTTON
 ========================= */
 
 .btn {
+
     display: block;
+
+    width: 100%;
 
     text-align: center;
 
     text-decoration: none !important;
 
-    padding: 11px 15px;
+    padding: 12px 15px;
 
     border-radius: 12px;
 
     font-weight: 600;
 
-    color: #ffffff !important;
+    color: white !important;
 
-    background: linear-gradient(
-        90deg,
-        #0891b2,
-        #2563eb,
-        #7c3aed
-    );
+    background:
+        linear-gradient(
+            90deg,
+            #0891b2,
+            #2563eb,
+            #7c3aed
+        );
 
     background-size: 200%;
 
@@ -255,20 +339,24 @@ html, body, [class*="css"] {
         0 5px 15px rgba(37, 99, 235, 0.25);
 }
 
+
 .btn:hover {
+
     background-position: 100% 50%;
 
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 22px rgba(34, 211, 238, 0.25);
+        0 8px 22px rgba(34, 211, 238, 0.3);
 }
+
 
 /* =========================
    SIDEBAR
 ========================= */
 
 [data-testid="stSidebar"] {
+
     background:
         linear-gradient(
             180deg,
@@ -279,18 +367,22 @@ html, body, [class*="css"] {
     border-right: 1px solid rgba(71, 85, 105, 0.4);
 }
 
+
 [data-testid="stSidebarNav"] {
+
     padding-top: 8px;
 }
 
-/* Sidebar Title */
+
+/* Sidebar Header */
 
 [data-testid="stSidebarNav"]::before {
+
     content: "🤖  MACHINE LEARNING HUB";
 
     display: block;
 
-    margin: 15px 16px 15px 16px;
+    margin: 15px 16px;
 
     padding-bottom: 14px;
 
@@ -305,9 +397,11 @@ html, body, [class*="css"] {
     color: #67e8f9;
 }
 
-/* Sidebar menu */
+
+/* Sidebar Menu */
 
 [data-testid="stSidebarNav"] a {
+
     margin: 4px 10px;
 
     padding: 11px 14px !important;
@@ -323,13 +417,17 @@ html, body, [class*="css"] {
     transition: all 0.25s ease;
 }
 
+
 [data-testid="stSidebarNav"] a:hover {
+
     background: rgba(34, 211, 238, 0.08);
 
     color: #67e8f9 !important;
 }
 
+
 [data-testid="stSidebarNav"] a[aria-current="page"] {
+
     background:
         linear-gradient(
             90deg,
@@ -343,9 +441,8 @@ html, body, [class*="css"] {
         inset 3px 0 0 #22d3ee;
 }
 
-/* =========================
-   CHANGE MENU NAME
-========================= */
+
+/* เปลี่ยนชื่อเมนู */
 
 [data-testid="stSidebarNav"] li:nth-child(1) a * {
     font-size: 0 !important;
@@ -356,6 +453,7 @@ html, body, [class*="css"] {
     font-size: 1rem !important;
 }
 
+
 [data-testid="stSidebarNav"] li:nth-child(2) a * {
     font-size: 0 !important;
 }
@@ -365,8 +463,9 @@ html, body, [class*="css"] {
     font-size: 1rem !important;
 }
 
+
 /* =========================
-   HIDE DEFAULT UI
+   HIDE STREAMLIT
 ========================= */
 
 footer,
@@ -374,15 +473,13 @@ footer,
     visibility: hidden;
 }
 
-[data-testid="stSidebarCollapsedControl"] {
-    visibility: visible !important;
-}
 
 /* =========================
    FOOTER
 ========================= */
 
 .footer {
+
     text-align: center;
 
     color: #64748b;
@@ -397,30 +494,45 @@ footer,
 }
 
 .footer span {
-    color: #22d3ee;
-}
-</style>
 
+    color: #22d3ee;
+
+}
+
+</style>
+"""), unsafe_allow_html=True)
+
+
+# =========================================================
+# HERO
+# =========================================================
+
+hero_html = """
 <div class="hero">
 
     <div class="badge">
         MACHINE LEARNING PROJECTS
     </div>
 
-    <h1>แนะนำสถานที่ท่องเที่ยว</h1>
+    <h1>
+        แนะนำสถานที่ท่องเที่ยว
+    </h1>
 
     <p>
         ศูนย์รวมเว็บแอปพลิเคชันสำหรับการวิเคราะห์
+        <br>
         และแนะนำสถานที่ท่องเที่ยว
     </p>
 
 </div>
-""", unsafe_allow_html=True)
+"""
+
+st.markdown(dedent(hero_html), unsafe_allow_html=True)
 
 
-# =========================
-# APPLICATIONS
-# =========================
+# =========================================================
+# APP DATA
+# =========================================================
 
 APPS = [
 
@@ -443,69 +555,77 @@ APPS = [
         "ระบบแนะนำสถานที่ท่องเที่ยว",
         "ระบบแนะนำสถานที่ท่องเที่ยวจากข้อมูล โดยใช้แนวคิด Machine Learning",
         "https://mzvpqrmpmmrw4htsbjr7tt.streamlit.app/"
-    ),
+    )
 
 ]
 
 
-# =========================
-# CARD DISPLAY
-# =========================
+# =========================================================
+# CARDS
+# =========================================================
 
 cols = st.columns(3)
 
+
 for i, (icon, title, desc, url) in enumerate(APPS):
 
-    with cols[i % 3]:
+    with cols[i]:
+
+        card_html = f"""
+<div class="card">
+
+    <div>
+
+        <div class="icon">
+            {icon}
+        </div>
+
+        <h3>
+            {title}
+        </h3>
+
+        <p>
+            {desc}
+        </p>
+
+    </div>
+
+    <a
+        class="btn"
+        href="{url}"
+        target="_blank"
+    >
+        เปิดแอป →
+    </a>
+
+</div>
+"""
 
         st.markdown(
-            f"""
-            <div class="card">
-
-                <div>
-
-                    <div class="icon">
-                        {icon}
-                    </div>
-
-                    <h3>
-                        {title}
-                    </h3>
-
-                    <p>
-                        {desc}
-                    </p>
-
-                </div>
-
-                <a
-                    class="btn"
-                    href="{url}"
-                    target="_blank"
-                >
-                    เปิดแอป →
-                </a>
-
-            </div>
-            """,
+            dedent(card_html),
             unsafe_allow_html=True
         )
 
 
-# =========================
+# =========================================================
 # FOOTER
-# =========================
+# =========================================================
+
+footer_html = """
+<div class="footer">
+
+    <span>●</span>
+
+    Made with Streamlit
+    ·
+    Machine Learning Projects
+    ·
+    Tourism Recommendation System
+
+</div>
+"""
 
 st.markdown(
-    """
-    <div class="footer">
-        <span>●</span>
-        Made with Streamlit
-        ·
-        Machine Learning Projects
-        ·
-        Tourism Recommendation System
-    </div>
-    """,
+    dedent(footer_html),
     unsafe_allow_html=True
 )
