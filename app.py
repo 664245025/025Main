@@ -13,14 +13,16 @@ st.markdown("""
 
 /* Main App Layout */
 .stApp {
-    background: #ffffff;
+    background: #05070f;
     background-image:
-        radial-gradient(circle at 20% 20%, rgba(255,102,153,0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255,182,193,0.12) 0%, transparent 40%),
-        linear-gradient(rgba(255,102,153,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,102,153,0.04) 1px, transparent 1px);
+        radial-gradient(circle at 20% 20%, rgba(0,160,255,0.14) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(0,90,200,0.18) 0%, transparent 40%),
+        linear-gradient(rgba(0,160,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,160,255,0.05) 1px, transparent 1px);
     background-size: auto, auto, 40px 40px, 40px 40px;
+    color: #e6f1ff;
 }
+[data-testid="stHeader"] { background: transparent; }
 html, body, [class*="css"] { font-family: 'Prompt', sans-serif; }
 
 /* Hero Section */
@@ -31,17 +33,17 @@ html, body, [class*="css"] { font-family: 'Prompt', sans-serif; }
 .hero h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 3rem;
-    background: linear-gradient(90deg, #e6005c, #ff4081, #ff6699);
+    background: linear-gradient(90deg, #00b4ff, #38d0ff, #7fe3ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0;
 }
-.hero p { color: #8c5a6f; letter-spacing: 1px; margin-top: 6px; }
+.hero p { color: #8fa8c8; letter-spacing: 1px; margin-top: 6px; }
 
 /* Cards */
 .card {
-    background: #fffafc;
-    border: 1px solid #ffd1e1;
+    background: #0b1220;
+    border: 1px solid #1b3a63;
     border-radius: 18px;
     padding: 22px;
     height: 250px;
@@ -51,16 +53,16 @@ html, body, [class*="css"] { font-family: 'Prompt', sans-serif; }
     backdrop-filter: blur(8px);
     transition: all .3s ease;
     margin-bottom: 18px;
-    box-shadow: 0 4px 15px rgba(255, 102, 153, 0.06);
+    box-shadow: 0 4px 15px rgba(0, 120, 255, 0.10);
 }
 .card:hover {
     transform: translateY(-6px);
-    border-color: #ff6699;
-    box-shadow: 0 8px 25px rgba(255, 64, 129, 0.2);
+    border-color: #00b4ff;
+    box-shadow: 0 8px 25px rgba(0, 180, 255, 0.30);
 }
 .card .icon { font-size: 2.2rem; }
-.card h3 { color: #4a2b38; margin: 8px 0 4px 0; font-size: 1.15rem; font-weight: 700; }
-.card p { color: #8c5a6f; font-size: 0.85rem; line-height: 1.4; }
+.card h3 { color: #e6f1ff; margin: 8px 0 4px 0; font-size: 1.15rem; font-weight: 700; }
+.card p { color: #8fa8c8; font-size: 0.85rem; line-height: 1.4; }
 
 /* Buttons */
 .btn {
@@ -71,13 +73,13 @@ html, body, [class*="css"] { font-family: 'Prompt', sans-serif; }
     border-radius: 10px;
     font-weight: 600;
     color: #ffffff !important;
-    background: linear-gradient(90deg, #ff4081, #ff6699);
+    background: linear-gradient(90deg, #0066ff, #00b4ff);
     transition: all .2s;
-    box-shadow: 0 4px 12px rgba(255, 64, 129, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 140, 255, 0.35);
 }
 .btn:hover {
-    filter: brightness(1.05);
-    box-shadow: 0 6px 18px rgba(255, 64, 129, 0.35);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 18px rgba(0, 180, 255, 0.5);
 }
 
 footer, #MainMenu { visibility: hidden; }
@@ -85,8 +87,8 @@ footer, #MainMenu { visibility: hidden; }
 
 /* Sidebar Styling */
 [data-testid="stSidebar"] {
-    background: #fffafc;
-    border-right: 1px solid #ffd1e1;
+    background: #070c18;
+    border-right: 1px solid #1b3a63;
 }
 [data-testid="stSidebarNav"] {
     padding-top: 6px;
@@ -96,11 +98,11 @@ footer, #MainMenu { visibility: hidden; }
     display: block;
     margin: 14px 16px 12px 16px;
     padding-bottom: 12px;
-    border-bottom: 1px solid #ffd1e1;
+    border-bottom: 1px solid #1b3a63;
     font-family: 'Orbitron', sans-serif;
     font-size: 0.78rem;
     letter-spacing: 1.5px;
-    background: linear-gradient(90deg, #e6005c, #ff4081, #ff6699);
+    background: linear-gradient(90deg, #00b4ff, #38d0ff, #7fe3ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -108,19 +110,19 @@ footer, #MainMenu { visibility: hidden; }
     margin: 2px 10px;
     padding: 10px 14px !important;
     border-radius: 10px;
-    color: #8c5a6f !important;
+    color: #8fa8c8 !important;
     font-family: 'Prompt', sans-serif;
     font-weight: 500;
     transition: all .2s ease;
 }
 [data-testid="stSidebarNav"] a:hover {
-    background: #ffe6f0;
-    color: #d8006f !important;
+    background: #0f1d36;
+    color: #38d0ff !important;
 }
 [data-testid="stSidebarNav"] a[aria-current="page"] {
-    background: linear-gradient(90deg, #fff0f5, #ffe6f0);
-    color: #d8006f !important;
-    box-shadow: inset 3px 0 0 #ff4081;
+    background: linear-gradient(90deg, #0a1a33, #0f2548);
+    color: #38d0ff !important;
+    box-shadow: inset 3px 0 0 #00b4ff;
 }
 
 /* เปลี่ยนข้อความเมนู: app -> หน้าหลัก, about -> ผู้พัฒนา */
@@ -159,4 +161,4 @@ for i, (icon, title, desc, url) in enumerate(APPS):
         </div>
         """, unsafe_allow_html=True)
 
-st.markdown("<p style='text-align:center;color:#5a6b8c;margin-top:30px;'>Made with Streamlit · Machine Learning Projects</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;color:#8fa8c8;margin-top:30px;'>Made with Streamlit · Machine Learning Projects</p>", unsafe_allow_html=True)
