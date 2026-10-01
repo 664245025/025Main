@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="ML Hub",
@@ -7,12 +8,11 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# CSS Styling - ตรงตามต้นฉบับ
-st.markdown("""
+# CSS Styling
+css_style = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Orbitron:wght@700;800&display=swap');
 
-/* Main App Background with Grid Pattern */
 .stApp {
     background: #ffffff;
     background-image:
@@ -24,11 +24,6 @@ st.markdown("""
     font-family: 'Prompt', sans-serif;
 }
 
-html, body, [class*="css"] {
-    font-family: 'Prompt', sans-serif !important;
-}
-
-/* Hero Section */
 .hero {
     text-align: center;
     padding: 40px 20px 20px 20px;
@@ -39,16 +34,13 @@ html, body, [class*="css"] {
     font-weight: 700;
     color: #e6005c;
     margin-bottom: 10px;
-    letter-spacing: 1px;
 }
 .hero p {
     color: #8c5a6f;
     font-size: 1.05rem;
-    letter-spacing: 0.5px;
     margin-top: 8px;
 }
 
-/* Card Grid */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -58,7 +50,6 @@ html, body, [class*="css"] {
     padding: 0 20px;
 }
 
-/* Cards */
 .card {
     background: #fffafc;
     border: 1.5px solid #ffd1e1;
@@ -86,7 +77,6 @@ html, body, [class*="css"] {
     font-size: 1.15rem;
     font-weight: 700;
     margin: 8px 0 10px 0;
-    line-height: 1.4;
 }
 .card-desc {
     color: #8c5a6f;
@@ -96,7 +86,6 @@ html, body, [class*="css"] {
     margin-bottom: 18px;
 }
 
-/* Buttons */
 .btn {
     display: block;
     width: 100%;
@@ -110,36 +99,26 @@ html, body, [class*="css"] {
     background: linear-gradient(90deg, #ff4081, #ff6699);
     transition: all 0.2s;
     box-shadow: 0 4px 12px rgba(255, 64, 129, 0.25);
-    border: none;
 }
 .btn:hover {
     filter: brightness(1.08);
     box-shadow: 0 6px 18px rgba(255, 64, 129, 0.35);
-    transform: translateY(-1px);
 }
 
-/* Footer */
 .footer-text {
     text-align: center;
     color: #5a6b8c;
     margin-top: 40px;
     padding-bottom: 30px;
-    font-size: 0.95rem;
 }
 
-/* Hide Streamlit elements */
 footer, #MainMenu {
     visibility: hidden;
 }
 
-/* Sidebar Styling */
 [data-testid="stSidebar"] {
     background: #fffafc;
     border-right: 1px solid #ffd1e1;
-}
-
-[data-testid="stSidebarNav"] {
-    padding-top: 6px;
 }
 
 [data-testid="stSidebarNav"]::before {
@@ -162,7 +141,6 @@ footer, #MainMenu {
     color: #8c5a6f !important;
     font-family: 'Prompt', sans-serif;
     font-weight: 500;
-    transition: all 0.2s ease;
 }
 
 [data-testid="stSidebarNav"] a:hover {
@@ -176,13 +154,6 @@ footer, #MainMenu {
     box-shadow: inset 3px 0 0 #ff4081;
 }
 
-/* Rename sidebar menu items */
-[data-testid="stSidebarNav"] li:nth-child(1) a * { font-size: 0 !important; }
-[data-testid="stSidebarNav"] li:nth-child(1) a::after { content: "หน้าหลัก"; font-size: 1rem !important; }
-[data-testid="stSidebarNav"] li:nth-child(2) a * { font-size: 0 !important; }
-[data-testid="stSidebarNav"] li:nth-child(2) a::after { content: "ผู้พัฒนา"; font-size: 1rem !important; }
-
-/* Responsive */
 @media (max-width: 900px) {
     .card-grid {
         grid-template-columns: 1fr;
@@ -192,7 +163,10 @@ footer, #MainMenu {
     }
 }
 </style>
-""", unsafe_allow_html=True)
+"""
+
+# Inject CSS
+st.markdown(css_style, unsafe_allow_html=True)
 
 # Hero Section
 st.markdown("""
@@ -212,7 +186,7 @@ APPS = [
      "https://mzvpqrmpmmrw4htsbjr7tt.streamlit.app/"),
 ]
 
-# Create Cards
+# Create Cards HTML
 cards_html = '<div class="card-grid">'
 for icon, title, desc, url in APPS:
     cards_html += f"""
@@ -227,7 +201,8 @@ for icon, title, desc, url in APPS:
     """
 cards_html += '</div>'
 
-st.markdown(cards_html, unsafe_allow_html=True)
+# Use components.html to render HTML properly
+components.html(cards_html, height=400, scrolling=False)
 
 # Footer
 st.markdown('<p class="footer-text">Made with Streamlit · Machine Learning Projects</p>', unsafe_allow_html=True)
@@ -235,4 +210,3 @@ st.markdown('<p class="footer-text">Made with Streamlit · Machine Learning Proj
 # Sidebar
 with st.sidebar:
     st.markdown("")
-    # Sidebar navigation will be handled by Streamlit pages
