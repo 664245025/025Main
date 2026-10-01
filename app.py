@@ -1,264 +1,194 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="ML Hub - Tourism",
-    page_icon="📍",
+    page_title="ML Hub",
+    page_icon="📌",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-# Enhanced CSS with Professional Design
+# CSS Styling - ตรงตามต้นฉบับ
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=Orbitron:wght@700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Orbitron:wght@700;800&display=swap');
 
-/* Animated Background */
+/* Main App Background with Grid Pattern */
 .stApp {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    background: #ffffff;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,102,153,0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,182,193,0.12) 0%, transparent 40%),
+        linear-gradient(rgba(255,102,153,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,102,153,0.04) 1px, transparent 1px);
+    background-size: auto, auto, 40px 40px, 40px 40px;
     font-family: 'Prompt', sans-serif;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+html, body, [class*="css"] {
+    font-family: 'Prompt', sans-serif !important;
 }
 
-/* Hero Section with Glassmorphism */
-.hero-section {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    padding: 60px 40px;
+/* Hero Section */
+.hero {
     text-align: center;
-    margin-bottom: 50px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    animation: slideDown 0.8s ease;
+    padding: 40px 20px 20px 20px;
 }
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3.2rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-}
-
-.hero-subtitle {
-    font-size: 1.3rem;
-    color: #4a5568;
-    font-weight: 500;
+.hero h1 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #e6005c;
+    margin-bottom: 10px;
     letter-spacing: 1px;
+}
+.hero p {
+    color: #8c5a6f;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
 }
 
 /* Card Grid */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 35px;
-    margin: 40px 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
-/* Enhanced Cards */
+/* Cards */
 .card {
-    background: white;
-    border-radius: 25px;
-    padding: 40px;
-    min-height: 420px;
+    background: #fffafc;
+    border: 1.5px solid #ffd1e1;
+    border-radius: 18px;
+    padding: 28px;
+    min-height: 240px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    animation: slideUp 0.8s ease;
-    animation-fill-mode: both;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 102, 153, 0.06);
 }
-
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-}
-
-.card:hover::before {
-    transform: scaleX(1);
-}
-
 .card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    transform: translateY(-6px);
+    border-color: #ff6699;
+    box-shadow: 0 8px 25px rgba(255, 64, 129, 0.2);
 }
-
 .card-icon {
-    font-size: 4rem;
-    margin-bottom: 25px;
-    display: inline-block;
-    animation: bounce 2s infinite;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    display: block;
 }
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
-}
-
 .card-title {
-    font-size: 1.6rem;
+    color: #4a2b38;
+    font-size: 1.15rem;
     font-weight: 700;
-    color: #2d3748;
-    margin-bottom: 15px;
+    margin: 8px 0 10px 0;
     line-height: 1.4;
 }
-
-.card-description {
-    font-size: 1.05rem;
-    color: #718096;
-    line-height: 1.7;
+.card-desc {
+    color: #8c5a6f;
+    font-size: 0.9rem;
+    line-height: 1.5;
     flex-grow: 1;
-    margin-bottom: 25px;
+    margin-bottom: 18px;
 }
 
-/* Button with Ripple Effect */
-.button-wrapper {
-    margin-top: auto;
-    padding-top: 20px;
-}
-
-.card-button {
+/* Buttons */
+.btn {
     display: block;
     width: 100%;
-    padding: 18px 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white !important;
-    text-decoration: none !important;
-    border-radius: 15px;
-    font-weight: 700;
-    font-size: 1.15rem;
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-    position: relative;
-    overflow: hidden;
+    text-decoration: none !important;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff !important;
+    background: linear-gradient(90deg, #ff4081, #ff6699);
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(255, 64, 129, 0.25);
     border: none;
 }
-
-.card-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+.btn:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 6px 18px rgba(255, 64, 129, 0.35);
+    transform: translateY(-1px);
 }
 
-.card-button:hover::before {
-    width: 300px;
-    height: 300px;
+/* Footer */
+.footer-text {
+    text-align: center;
+    color: #5a6b8c;
+    margin-top: 40px;
+    padding-bottom: 30px;
+    font-size: 0.95rem;
 }
 
-.card-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+/* Hide Streamlit elements */
+footer, #MainMenu {
+    visibility: hidden;
 }
 
 /* Sidebar Styling */
 [data-testid="stSidebar"] {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    border-right: 2px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
+    background: #fffafc;
+    border-right: 1px solid #ffd1e1;
 }
 
-.sidebar-header {
+[data-testid="stSidebarNav"] {
+    padding-top: 6px;
+}
+
+[data-testid="stSidebarNav"]::before {
+    content: "MACHINE LEARNING HUB";
+    display: block;
+    margin: 14px 16px 12px 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ffd1e1;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 25px 16px;
-    text-align: center;
-    border-bottom: 3px solid rgba(102, 126, 234, 0.3);
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #e6005c;
 }
 
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: white;
-    font-size: 1.1rem;
+[data-testid="stSidebarNav"] a {
+    margin: 2px 10px;
+    padding: 10px 14px !important;
+    border-radius: 10px;
+    color: #8c5a6f !important;
+    font-family: 'Prompt', sans-serif;
     font-weight: 500;
-    margin-top: 60px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
 }
 
-/* Hide Streamlit elements */
-#MainMenu, footer {
-    visibility: hidden;
+[data-testid="stSidebarNav"] a:hover {
+    background: #ffe6f0;
+    color: #d8006f !important;
 }
+
+[data-testid="stSidebarNav"] a[aria-current="page"] {
+    background: linear-gradient(90deg, #fff0f5, #ffe6f0);
+    color: #d8006f !important;
+    box-shadow: inset 3px 0 0 #ff4081;
+}
+
+/* Rename sidebar menu items */
+[data-testid="stSidebarNav"] li:nth-child(1) a * { font-size: 0 !important; }
+[data-testid="stSidebarNav"] li:nth-child(1) a::after { content: "หน้าหลัก"; font-size: 1rem !important; }
+[data-testid="stSidebarNav"] li:nth-child(2) a * { font-size: 0 !important; }
+[data-testid="stSidebarNav"] li:nth-child(2) a::after { content: "ผู้พัฒนา"; font-size: 1rem !important; }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-    .hero-subtitle {
-        font-size: 1rem;
-    }
+@media (max-width: 900px) {
     .card-grid {
         grid-template-columns: 1fr;
-        gap: 25px;
     }
-    .card {
-        min-height: 380px;
-        padding: 30px;
+    .hero h1 {
+        font-size: 2rem;
     }
 }
 </style>
@@ -266,28 +196,23 @@ st.markdown("""
 
 # Hero Section
 st.markdown("""
-<div class="hero-section">
-    <h1 class="hero-title">แนะนำสถานที่ท่องเที่ยว</h1>
-    <p class="hero-subtitle">ศูนย์รวมเว็บแอปพลิเคชัน Machine Learning สำหรับการท่องเที่ยว</p>
+<div class="hero">
+    <h1>แนะนำสถานที่ท่องเที่ยว</h1>
+    <p>ศูนย์รวมเว็บแอปพลิเคชัน สถานที่ท่องเที่ยว</p>
 </div>
 """, unsafe_allow_html=True)
 
 # Apps Data
 APPS = [
-    ("", "โครงสร้างข้อมูลท่องเที่ยว", 
-     "นำสถานที่ท่องเที่ยวที่น่าสนใจมาจัดระบบและวิเคราะห์ด้วยเทคนิค Machine Learning", 
+    ("📌", "โครงสร้างข้อมูลท่องเที่ยว", "นำสถานที่ท่องเที่ยว", 
      "https://colab.research.google.com/drive/1ZmBJEQh-4eOANw2rbN9O-rx08Qo6DiSQ?usp=sharing"),
-    
-    ("📊", "วิเคราะห์ข้อมูลท่องเที่ยว", 
-     "วิเคราะห์ข้อมูลและความสัมพันธ์ของสถานที่ท่องเที่ยวด้วยโมเดลขั้นสูง", 
+    ("📌", "วิเคราะห์ข้อมูลท่องเที่ยว", "วิเคราะห์ข้อมูลและความสัมพันธ์ของสถานที่ท่องเที่ยว", 
      "https://colab.research.google.com/drive/12YK3jnjWNXlemkG97EKQmmonLxFx8Cmi?usp=sharing"),
-    
-    ("🎯", "ระบบแนะนำสถานที่ท่องเที่ยว", 
-     "แนะนำสถานที่ท่องเที่ยวที่เหมาะสมจากข้อมูลด้วย AI Recommendation System", 
+    ("", "ระบบแนะนำสถานที่ท่องเที่ยว", "แนะนำสถานที่ท่องเที่ยวจากข้อมูล", 
      "https://mzvpqrmpmmrw4htsbjr7tt.streamlit.app/"),
 ]
 
-# Create Cards using HTML Grid
+# Create Cards
 cards_html = '<div class="card-grid">'
 for icon, title, desc, url in APPS:
     cards_html += f"""
@@ -295,13 +220,9 @@ for icon, title, desc, url in APPS:
         <div>
             <span class="card-icon">{icon}</span>
             <h3 class="card-title">{title}</h3>
-            <p class="card-description">{desc}</p>
+            <p class="card-desc">{desc}</p>
         </div>
-        <div class="button-wrapper">
-            <a href="{url}" target="_blank" class="card-button">
-                เปิดแอปพลิเคชัน →
-            </a>
-        </div>
+        <a class="btn" href="{url}" target="_blank">เปิดแอป →</a>
     </div>
     """
 cards_html += '</div>'
@@ -309,15 +230,9 @@ cards_html += '</div>'
 st.markdown(cards_html, unsafe_allow_html=True)
 
 # Footer
-st.markdown("""
-<div class="footer">
-    <p>Made with ❤️ using Streamlit · Machine Learning Projects</p>
-    <p style="margin-top: 10px; font-size: 0.95rem;">© 2026 Tourism ML Hub</p>
-</div>
-""", unsafe_allow_html=True)
+st.markdown('<p class="footer-text">Made with Streamlit · Machine Learning Projects</p>', unsafe_allow_html=True)
 
 # Sidebar
 with st.sidebar:
-    st.markdown('<div class="sidebar-header">MACHINE LEARNING HUB</div>', unsafe_allow_html=True)
     st.markdown("")
-    st.info("🎓 โครงการ Machine Learning\n\n📍 ระบบแนะนำการท่องเที่ยว\n\nPowered by Streamlit")
+    # Sidebar navigation will be handled by Streamlit pages
