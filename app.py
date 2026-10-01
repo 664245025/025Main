@@ -1,16 +1,16 @@
 import streamlit as st
-
+ 
 st.set_page_config(
     page_title="ML Hub",
-    page_icon="📌",
+    page_icon="🏝️",
     layout="wide",
     initial_sidebar_state="collapsed",
 ) 
-
+ 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;500;700&family=Orbitron:wght@700&display=swap');
-
+ 
 /* Main App Layout */
 .stApp {
     background: #05070f;
@@ -24,7 +24,7 @@ st.markdown("""
 }
 [data-testid="stHeader"] { background: transparent; }
 html, body, [class*="css"] { font-family: 'Prompt', sans-serif; }
-
+ 
 /* Hero Section */
 .hero {
     text-align: center;
@@ -39,7 +39,7 @@ html, body, [class*="css"] { font-family: 'Prompt', sans-serif; }
     margin-bottom: 0;
 }
 .hero p { color: #8fa8c8; letter-spacing: 1px; margin-top: 6px; }
-
+ 
 /* Cards */
 .card {
     background: #0b1220;
@@ -63,7 +63,7 @@ html, body, [class*="css"] { font-family: 'Prompt', sans-serif; }
 .card .icon { font-size: 2.2rem; }
 .card h3 { color: #e6f1ff; margin: 8px 0 4px 0; font-size: 1.15rem; font-weight: 700; }
 .card p { color: #8fa8c8; font-size: 0.85rem; line-height: 1.4; }
-
+ 
 /* Buttons */
 .btn {
     display: block;
@@ -81,10 +81,10 @@ html, body, [class*="css"] { font-family: 'Prompt', sans-serif; }
     filter: brightness(1.1);
     box-shadow: 0 6px 18px rgba(0, 180, 255, 0.5);
 }
-
+ 
 footer, #MainMenu { visibility: hidden; }
 [data-testid="stSidebar"], [data-testid="stSidebarCollapsedControl"] { visibility: visible !important; }
-
+ 
 /* Sidebar Styling */
 [data-testid="stSidebar"] {
     background: #070c18;
@@ -124,29 +124,29 @@ footer, #MainMenu { visibility: hidden; }
     color: #38d0ff !important;
     box-shadow: inset 3px 0 0 #00b4ff;
 }
-
+ 
 /* เปลี่ยนข้อความเมนู: app -> หน้าหลัก, about -> ผู้พัฒนา */
 [data-testid="stSidebarNav"] li:nth-child(1) a * { font-size: 0 !important; }
 [data-testid="stSidebarNav"] li:nth-child(1) a::after { content: "หน้าหลัก"; font-size: 1rem !important; }
 [data-testid="stSidebarNav"] li:nth-child(2) a * { font-size: 0 !important; }
 [data-testid="stSidebarNav"] li:nth-child(2) a::after { content: "ผู้พัฒนา"; font-size: 1rem !important; }
 </style>
-
+ 
 <div class="hero">
     <h1>แนะนำสถานที่ท่องเที่ยว</h1>
     <p>ศูนย์รวมเว็บแอปพลิเคชัน สถานที่ท่องเที่ยว</p>
 </div>
 """, unsafe_allow_html=True)
-
+ 
 st.write("")
-
+ 
 APPS = [
-    ("📌","โครงสร้างข้อมูลทีท่องเที่ยว", "นำสถานที่ท่องเที่ยว", "https://colab.research.google.com/drive/1ZmBJEQh-4eOANw2rbN9O-rx08Qo6DiSQ?usp=sharing"),
-    ("📌","วิเคราะข้อมูลท่องเที่ยว", "วิเคราะข้อมูลและความสัมพันธ์ของสถานที่ท่องเที่ยว", "https://colab.research.google.com/drive/12YK3jnjWNXlemkG97EKQmmonLxFx8Cmi?usp=sharing"),
-    ("📌","ระบบแนะนำสถานที่ท่องเที่ยว", "แนะนำสถานที่ท่องเที่ยวจากข้อมูล", "https://mzvpqrmpmmrw4htsbjr7tt.streamlit.app/"),
+    ("🏝️","โครงสร้างข้อมูลทีท่องเที่ยว", "นำสถานที่ท่องเที่ยว", "https://colab.research.google.com/drive/1ZmBJEQh-4eOANw2rbN9O-rx08Qo6DiSQ?usp=sharing"),
+    ("⛰️","วิเคราะข้อมูลท่องเที่ยว", "วิเคราะข้อมูลและความสัมพันธ์ของสถานที่ท่องเที่ยว", "https://colab.research.google.com/drive/12YK3jnjWNXlemkG97EKQmmonLxFx8Cmi?usp=sharing"),
+    ("🛕","ระบบแนะนำสถานที่ท่องเที่ยว", "แนะนำสถานที่ท่องเที่ยวจากข้อมูล", "https://mzvpqrmpmmrw4htsbjr7tt.streamlit.app/"),
     
 ]
-
+ 
 cols = st.columns(3)
 for i, (icon, title, desc, url) in enumerate(APPS):
     with cols[i % 3]:
@@ -160,5 +160,5 @@ for i, (icon, title, desc, url) in enumerate(APPS):
             <a class="btn" href="{url}" target="_blank">เปิดแอป →</a>
         </div>
         """, unsafe_allow_html=True)
-
+ 
 st.markdown("<p style='text-align:center;color:#8fa8c8;margin-top:30px;'>Made with Streamlit · Machine Learning Projects</p>", unsafe_allow_html=True)
