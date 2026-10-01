@@ -161,4 +161,4 @@ for i, (icon, title, desc, url) in enumerate(APPS):
         </div>
         """, unsafe_allow_html=True)
  
-st.markdown("<p style='text-align:center;color:#8fa8c8;margin-top:30px;'>Made with Streamlit · Machine Learning Projects</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;color:#8fa8c8;margin-top:30px;'>Made with Streamlit · Recommend_Projects</p>", unsafe_allow_html=True)
